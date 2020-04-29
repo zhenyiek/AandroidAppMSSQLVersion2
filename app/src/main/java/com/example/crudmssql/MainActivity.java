@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     ConnectionHelper connection;
 
-    Button btnAdd;
     RecyclerView recyclerViewEmployees;
 
     EmployeeAdapter employeeAdapter;
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         connection = new ConnectionHelper();
 
-        btnAdd = (Button) findViewById(R.id.btnadd);
         recyclerViewEmployees = (RecyclerView) findViewById(R.id.recyclerViewEmployees);
 
         listEmployees = new ArrayList<>();
@@ -54,13 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         listEmployees();
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Register.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void listEmployees() {

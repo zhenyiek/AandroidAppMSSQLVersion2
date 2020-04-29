@@ -4,13 +4,12 @@ import android.view.*;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-//import com.example.crudmssql.CadastroActivity;
 import com.example.crudmssql.R;
-import com.example.crudmssql.Register;
 import com.example.crudmssql.UpdateDelete;
 import com.example.crudmssql.model.Employee;
 
@@ -23,10 +22,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
         TextView txtItemName, txtItemPhone;
         Button btnItemView;
-
+        ImageView status;
         public EmployeeViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            status = (ImageView) itemView.findViewById(R.id.image);
             txtItemName = (TextView) itemView.findViewById(R.id.txtItemName);
             txtItemPhone = (TextView) itemView.findViewById(R.id.txtItemPhone);
             btnItemView = (Button) itemView.findViewById(R.id.btnItemView);
@@ -53,7 +52,15 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
         holder.txtItemName.setText(employee.getName());
         holder.txtItemPhone.setText(employee.getPhone());
-
+        if("Pending".equals(employee.getPhone())){
+            holder.status.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.yellowcircle));
+        }
+        else if("Cancel".equals(employee.getPhone())){
+            holder.status.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.redcircle));
+        }
+        else if("Done".equals(employee.getPhone())){
+            holder.status.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.greencircle));
+        }
         holder.btnItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
